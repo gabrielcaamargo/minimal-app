@@ -1,8 +1,10 @@
-import { ActivityIndicator, StyleSheet, Text, View, StatusBar } from 'react-native';
+import { ActivityIndicator, View, StatusBar } from 'react-native';
 
 import { Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold, useFonts } from '@expo-google-fonts/inter';
 import { ThemeProvider } from 'styled-components';
 import theme from '@theme/index';
+import { Routes } from '@/routes';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -19,20 +21,13 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <View style={styles.container}>
-        <Text>Open up App.tsx to start working on your app!</Text>
-        <StatusBar barStyle="dark-content" translucent backgroundColor='transparent' />
-      </View>
-    </ThemeProvider>
+    <SafeAreaProvider>
+      <SafeAreaView style={{ flex: 1 }}>
+        <ThemeProvider theme={theme}>
+          <StatusBar barStyle='light-content' translucent backgroundColor='transparent' />
+          <Routes />
+        </ThemeProvider>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
