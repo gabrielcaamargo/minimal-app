@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import theme from '@theme/index';
 import { Routes } from '@/routes';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { useColors } from '@/hooks/useColors';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -20,11 +21,13 @@ export default function App() {
     </View>;
   }
 
+  const { gray } = useColors();
+
   return (
     <SafeAreaProvider>
       <SafeAreaView style={{ flex: 1 }}>
         <ThemeProvider theme={theme}>
-          <StatusBar barStyle='light-content' translucent backgroundColor='transparent' />
+          <StatusBar barStyle='light-content' translucent backgroundColor={gray[700]} />
           <Routes />
         </ThemeProvider>
       </SafeAreaView>
