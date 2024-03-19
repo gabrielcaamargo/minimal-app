@@ -1,10 +1,10 @@
+import { Text } from '@/components/common/Text';
 import { View } from '@/components/common/View';
-import { Text } from 'react-native';
 
 export function SigninScreen() {
   return (
     <View centered>
-      <Text>React Navigation</Text>
+      <Text variant='smallText' color='secondary'>Signin Screen</Text>
     </View>
   );
 }

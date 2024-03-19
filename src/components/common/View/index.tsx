@@ -1,5 +1,5 @@
 import { ViewProps } from 'react-native';
-import { Container } from './styles';
+import * as Styled from './styles';
 
 interface IViewProps extends ViewProps {
   centered?: boolean
@@ -7,8 +7,8 @@ interface IViewProps extends ViewProps {
 
 export function View({ centered = false, children, ...rest }: IViewProps) {
   return (
-    <Container centered={centered} {...rest}>
+    <Styled.Container centered={centered} {...rest}>
       {children}
-    </Container>
+    </Styled.Container>
   );
 }

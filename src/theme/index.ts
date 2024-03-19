@@ -27,9 +27,15 @@ export default {
     },
     green: {
       500: '#00FF29'
-    }
+    },
+    white: '#FFF',
+    black: '#000'
   },
   typography: {
+    smallText: {
+      fontFamily: 'Inter_400Regular',
+      fontSize: 12
+    },
     commonText: {
       fontFamily: 'Inter_400Regular',
       fontSize: 16
