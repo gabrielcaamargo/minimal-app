@@ -1,10 +1,11 @@
-import { TextInputProps } from 'react-native';
+import { useRef } from 'react';
+import { TextInputProps, TextInput as RNTextInput, Pressable } from 'react-native';
 import * as Styled from './styles';
 
 import { Text } from '@components/common/Text';
 import { useColors } from '@/hooks/useColors';
 
-interface ITextInputProps extends TextInputProps {
+export interface ITextInputProps extends TextInputProps {
   placeholder: string
   label?: string
   password?: boolean
@@ -14,16 +15,26 @@ interface ITextInputProps extends TextInputProps {
 export function TextInput({ label, placeholder, password = false, errorMessage, ...rest }: ITextInputProps) {
   const { gray } = useColors();
 
+  const inputRef = useRef<RNTextInput>(null);
+
+  function handleFocus() {
+    inputRef.current?.focus();
+  }
+
   return (
     <Styled.Container>
-      {label && <Text>{label}</Text>}
+      <Pressable onPress={handleFocus}>
+        {label && <Text>{label}</Text>}
 
-      <Styled.TextInput
-        placeholder={placeholder}
-        placeholderTextColor={gray[400]}
-        secureTextEntry={password}
-        {...rest}
-      />
+        <Styled.TextInput
+          placeholder={placeholder}
+          placeholderTextColor={gray[400]}
+          secureTextEntry={password}
+          autoCapitalize='none'
+          ref={inputRef}
+          {...rest}
+        />
+      </Pressable>
 
       {errorMessage && <Text color='danger' variant='smallText'>{errorMessage}</Text>}
     </Styled.Container>
