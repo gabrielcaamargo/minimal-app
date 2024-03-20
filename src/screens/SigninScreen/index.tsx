@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { View } from '@/components/common/View';
 import { Image } from 'react-native';
 
@@ -52,7 +53,19 @@ export function SigninScreen() {
             />
           </Styled.FormContainerFields>
 
-          <Button>Sign in</Button>
+          <Styled.FormContainerFooter>
+            <Button>Sign in</Button>
+            <Styled.FormContainerFooterCallToAction>
+              <Styled.RegisterText>
+              Don't have an account yet?
+              </Styled.RegisterText>
+              <Styled.RegisterTextLink activeOpacity={0.6}>
+                <Styled.RegisterText color='primary'>
+                  Register
+                </Styled.RegisterText>
+              </Styled.RegisterTextLink>
+            </Styled.FormContainerFooterCallToAction>
+          </Styled.FormContainerFooter>
         </Styled.FormContainer>
 
       </View>
