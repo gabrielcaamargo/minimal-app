@@ -10,6 +10,7 @@ import * as Styled from './styles';
 import { FormTextInput } from '@/components/common/FormTextInput';
 import { KeyboardAvoidingView } from '@/components/common/KeyboardAvoidingView';
 import { Button } from '@/components/common/Button';
+import { PasswordInput } from '@/components/common/PasswordInput';
 
 export function SigninScreen() {
   const { control, formState } = useForm<SigninSchemaType>({
@@ -44,12 +45,16 @@ export function SigninScreen() {
               keyboardType='email-address'
             />
 
-            <FormTextInput
+            {/* <FormTextInput
               control={control}
               name='password'
               placeholder='Password'
               errorMessage={formState.errors.password?.message}
               password
+            /> */}
+
+            <PasswordInput
+              placeholder='Password'
             />
           </Styled.FormContainerFields>
 

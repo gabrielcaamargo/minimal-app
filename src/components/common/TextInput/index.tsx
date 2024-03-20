@@ -26,7 +26,7 @@ export function TextInput({ label, placeholder, password = false, errorMessage, 
       <Pressable onPress={handleFocus}>
         {label && <Text>{label}</Text>}
 
-        <Styled.TextInput
+        <Styled.Input
           placeholder={placeholder}
           placeholderTextColor={gray[400]}
           secureTextEntry={password}
