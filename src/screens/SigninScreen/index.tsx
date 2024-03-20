@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import * as Styled from './styles';
 import { FormTextInput } from '@/components/common/FormTextInput';
+import { KeyboardAvoidingView } from '@/components/common/KeyboardAvoidingView';
 
 export function SigninScreen() {
   const { control, formState } = useForm<SigninSchemaType>({
@@ -20,35 +21,37 @@ export function SigninScreen() {
   });
 
   return (
-    <View centered paddingHorizontal='xlg'>
-      <Image
-        alt='Minimal social media'
-        source={require('../../assets/images/logo.png')}
-        style={{
-          width: 164,
-          height: 66
-        }}
-      />
-
-      <Styled.FormContainer>
-        <FormTextInput
-          control={control}
-          name='email'
-          placeholder='Email'
-          label='Email'
-          errorMessage={formState.errors.email?.message}
-          keyboardType='email-address'
+    <KeyboardAvoidingView>
+      <View centered paddingHorizontal='xlg'>
+        <Image
+          alt='Minimal social media'
+          source={require('../../assets/images/logo.png')}
+          style={{
+            width: 164,
+            height: 66
+          }}
         />
 
-        <FormTextInput
-          control={control}
-          name='password'
-          placeholder='Password'
-          label='Password'
-          errorMessage={formState.errors.password?.message}
-          password
-        />
-      </Styled.FormContainer>
-    </View>
+        <Styled.FormContainer>
+          <FormTextInput
+            control={control}
+            name='email'
+            placeholder='Email'
+            label='Email'
+            errorMessage={formState.errors.email?.message}
+            keyboardType='email-address'
+          />
+
+          <FormTextInput
+            control={control}
+            name='password'
+            placeholder='Password'
+            label='Password'
+            errorMessage={formState.errors.password?.message}
+            password
+          />
+        </Styled.FormContainer>
+      </View>
+    </KeyboardAvoidingView>
   );
 }
