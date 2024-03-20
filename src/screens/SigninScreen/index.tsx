@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as Styled from './styles';
 import { FormTextInput } from '@/components/common/FormTextInput';
 import { KeyboardAvoidingView } from '@/components/common/KeyboardAvoidingView';
+import { Button } from '@/components/common/Button';
 
 export function SigninScreen() {
   const { control, formState } = useForm<SigninSchemaType>({
@@ -33,24 +34,27 @@ export function SigninScreen() {
         />
 
         <Styled.FormContainer>
-          <FormTextInput
-            control={control}
-            name='email'
-            placeholder='Email'
-            label='Email'
-            errorMessage={formState.errors.email?.message}
-            keyboardType='email-address'
-          />
+          <Styled.FormContainerFields>
+            <FormTextInput
+              control={control}
+              name='email'
+              placeholder='Email'
+              errorMessage={formState.errors.email?.message}
+              keyboardType='email-address'
+            />
 
-          <FormTextInput
-            control={control}
-            name='password'
-            placeholder='Password'
-            label='Password'
-            errorMessage={formState.errors.password?.message}
-            password
-          />
+            <FormTextInput
+              control={control}
+              name='password'
+              placeholder='Password'
+              errorMessage={formState.errors.password?.message}
+              password
+            />
+          </Styled.FormContainerFields>
+
+          <Button>Sign in</Button>
         </Styled.FormContainer>
+
       </View>
     </KeyboardAvoidingView>
   );
