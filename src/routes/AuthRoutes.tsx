@@ -3,8 +3,8 @@ import { SignupScreen } from '@/screens/SignupScreen';
 import { NativeStackNavigationProp, createNativeStackNavigator } from '@react-navigation/native-stack';
 
 type TAuthRoutes = {
-  SigninScreen: undefined
-  SignupScreen: undefined
+  Signin: undefined
+  Signup: undefined
 }
 
 export type TAuthNavigationRoutesProps = NativeStackNavigationProp<TAuthRoutes>
@@ -19,8 +19,8 @@ export function AuthRoutes() {
         animation: 'fade'
       }}
     >
-      <Stack.Screen name='SigninScreen' component={SigninScreen} />
-      <Stack.Screen name='SignupScreen' component={SignupScreen} />
+      <Stack.Screen name='Signin' component={SigninScreen} />
+      <Stack.Screen name='Signup' component={SignupScreen} />
     </Stack.Navigator>
   );
 }

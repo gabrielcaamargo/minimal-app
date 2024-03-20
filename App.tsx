@@ -5,7 +5,6 @@ import { ThemeProvider } from 'styled-components';
 import theme from '@theme/index';
 import { Routes } from '@/routes';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { useColors } from '@/hooks/useColors';
 import { View } from '@/components/common/View';
 
 export default function App() {
@@ -16,22 +15,22 @@ export default function App() {
     Inter_700Bold
   });
 
-  if(!fontsLoaded) {
-    <View>
-      <ActivityIndicator size={32} color='#1A1A1A' />
-    </View>;
+  if (!fontsLoaded) {
+    return (
+      <View>
+        <ActivityIndicator size={32} color='#1A1A1A' />
+      </View>
+    );
   }
 
-  const { gray } = useColors();
-
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={{ flex: 1 }}>
-        <ThemeProvider theme={theme}>
-          <StatusBar barStyle='light-content' translucent backgroundColor={gray[700]} />
+    <ThemeProvider theme={theme}>
+      <SafeAreaProvider>
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#1A1A1A' }}>
+          <StatusBar barStyle='light-content' translucent backgroundColor='#1A1A1A'/>
           <Routes />
-        </ThemeProvider>
-      </SafeAreaView>
-    </SafeAreaProvider>
+        </SafeAreaView>
+      </SafeAreaProvider>
+    </ThemeProvider>
   );
 }
