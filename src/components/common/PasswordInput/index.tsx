@@ -7,14 +7,14 @@ import { useColors } from '@/hooks/useColors';
 
 import { FontAwesome6 } from '@expo/vector-icons';
 
-export interface ITextInputProps extends TextInputProps {
+export interface IPasswordInputProps extends TextInputProps {
   placeholder: string
   label?: string
   password?: boolean
   errorMessage?: string
 }
 
-export function PasswordInput({ label, placeholder,  errorMessage, ...rest }: ITextInputProps) {
+export function PasswordInput({ label, placeholder,  errorMessage, ...rest }: IPasswordInputProps) {
   const { gray } = useColors();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
