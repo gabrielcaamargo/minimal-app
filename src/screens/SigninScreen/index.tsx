@@ -17,7 +17,6 @@ import { useSignin } from '@/services/auth/hooks/useSignin';
 
 import { useNavigation } from '@react-navigation/native';
 import { TAuthNavigationRoutesProps } from '@/routes/AuthRoutes';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export function SigninScreen() {
   const navigation = useNavigation<TAuthNavigationRoutesProps>();
