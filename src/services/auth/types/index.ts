@@ -9,4 +9,15 @@ type TSignupDto = {
   password: string
 }
 
-export { TSigninDto, TSignupDto };
+type TSigninResponse = {
+  accessToken: string
+  descriptin: null,
+  email: string
+  id: string
+  name: string
+  profilePicture: null
+  updatedAt: Date
+  createdAt: Date
+}
+
+export { TSigninDto, TSigninResponse, TSignupDto };
