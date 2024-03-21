@@ -3,7 +3,7 @@ import * as Styled from './styles';
 import { ButtonVariantT } from './types';
 
 interface IButtonProps extends TouchableOpacityProps {
-  children: string
+  children: string | React.ReactNode
   variant?: ButtonVariantT
 }
 
