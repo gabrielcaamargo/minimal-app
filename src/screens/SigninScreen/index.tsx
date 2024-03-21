@@ -7,13 +7,19 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import * as Styled from './styles';
+
 import { FormTextInput } from '@/components/common/FormTextInput';
 import { KeyboardAvoidingView } from '@/components/common/KeyboardAvoidingView';
 import { Button } from '@/components/common/Button';
 import { FormPasswordInput } from '@/components/common/FormPasswordInput';
+
 import { useSignin } from '@/services/auth/hooks/useSignin';
 
+import { useNavigation } from '@react-navigation/native';
+import { TAuthNavigationRoutesProps } from '@/routes/AuthRoutes';
+
 export function SigninScreen() {
+  const navigation = useNavigation<TAuthNavigationRoutesProps>();
   const { control, formState, handleSubmit } = useForm<SigninSchemaType>({
     resolver: zodResolver(SigninSchema),
     mode: 'onChange',
@@ -28,6 +34,10 @@ export function SigninScreen() {
 
   async function handleSubmitLoginForm(values: SigninSchemaType) {
     await handleSignin(values);
+  }
+
+  function handleNavigateToRegister() {
+    navigation.navigate('Signup');
   }
 
   return (
@@ -73,7 +83,7 @@ export function SigninScreen() {
               <Styled.RegisterText>
               Don't have an account yet?
               </Styled.RegisterText>
-              <Styled.RegisterTextLink activeOpacity={0.6}>
+              <Styled.RegisterTextLink activeOpacity={0.6} onPress={handleNavigateToRegister}>
                 <Styled.RegisterText color='primary'>
                   Register
                 </Styled.RegisterText>

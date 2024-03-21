@@ -1,12 +1,12 @@
 import { useMutation } from '@tanstack/react-query';
 import { signin } from '../api';
-import { SigninDtoT } from '../types';
+import { TSigninDto } from '../types';
 
 import Toast from 'react-native-toast-message';
 
 export function useSignin() {
   return useMutation({
-    mutationFn: (signinDto: SigninDtoT) => signin(signinDto),
+    mutationFn: (signinDto: TSigninDto) => signin(signinDto),
     onSuccess: () => {
       Toast.show({
         type: 'success',
