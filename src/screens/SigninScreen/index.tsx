@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { View } from '@/components/common/View';
-import { Image } from 'react-native';
+import { ActivityIndicator, Image } from 'react-native';
 
 import { SigninSchema, SigninSchemaType } from './schemas';
 import { useForm } from 'react-hook-form';
@@ -11,9 +11,10 @@ import { FormTextInput } from '@/components/common/FormTextInput';
 import { KeyboardAvoidingView } from '@/components/common/KeyboardAvoidingView';
 import { Button } from '@/components/common/Button';
 import { FormPasswordInput } from '@/components/common/FormPasswordInput';
+import { useSignin } from '@/services/auth/hooks/useSignin';
 
 export function SigninScreen() {
-  const { control, formState } = useForm<SigninSchemaType>({
+  const { control, formState, handleSubmit } = useForm<SigninSchemaType>({
     resolver: zodResolver(SigninSchema),
     mode: 'onChange',
     delayError: 500,
@@ -22,6 +23,12 @@ export function SigninScreen() {
       password: ''
     }
   });
+
+  const { mutateAsync: handleSignin, isPending } = useSignin();
+
+  async function handleSubmitLoginForm(values: SigninSchemaType) {
+    await handleSignin(values);
+  }
 
   return (
     <KeyboardAvoidingView>
@@ -55,7 +62,13 @@ export function SigninScreen() {
           </Styled.FormContainerFields>
 
           <Styled.FormContainerFooter>
-            <Button>Sign in</Button>
+            <Button
+              disabled={(!formState.isValid || isPending)}
+              variant={(!formState.isValid || isPending) ? 'disabled' : 'default'}
+              onPress={handleSubmit(handleSubmitLoginForm)}
+            >
+              {!isPending ? 'Sign in' : <ActivityIndicator color='#FFF' size={18} />}
+            </Button>
             <Styled.FormContainerFooterCallToAction>
               <Styled.RegisterText>
               Don't have an account yet?
