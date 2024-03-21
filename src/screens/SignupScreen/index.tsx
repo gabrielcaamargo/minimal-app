@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import { ActivityIndicator, Image, TouchableOpacity } from 'react-native';
 import { View } from '@/components/common/View';
 
@@ -13,13 +12,12 @@ import { KeyboardAvoidingView } from '@/components/common/KeyboardAvoidingView';
 import { Button } from '@/components/common/Button';
 import { FormPasswordInput } from '@/components/common/FormPasswordInput';
 
-import { useSignin } from '@/services/auth/hooks/useSignin';
-
 import { useNavigation } from '@react-navigation/native';
 import { TAuthNavigationRoutesProps } from '@/routes/AuthRoutes';
 
 import { AntDesign } from '@expo/vector-icons';
 import { useColors } from '@/hooks/useColors';
+import { useSignup } from '@/services/auth/hooks/useSignup';
 
 export function SignupScreen() {
   const navigation = useNavigation<TAuthNavigationRoutesProps>();
@@ -35,14 +33,10 @@ export function SignupScreen() {
     }
   });
 
-  const { mutateAsync: handleSignin, isPending } = useSignin();
+  const { mutateAsync: handleSignup, isPending } = useSignup();
 
   async function handleSubmitLoginForm(values: SignupSchemaType) {
-    await handleSignin(values);
-  }
-
-  function handleNavigateToRegister() {
-    navigation.navigate('Signup');
+    await handleSignup(values);
   }
 
   return (

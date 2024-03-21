@@ -6,7 +6,6 @@ const httpClient = axios.create({
 
 httpClient.interceptors.request.use(
   (config) => {
-    console.log('Request Interceptor:', config);
     return config;
   },
   (error) => {
@@ -17,7 +16,6 @@ httpClient.interceptors.request.use(
 
 httpClient.interceptors.response.use(
   (response) => {
-    console.log('Response Interceptor:', response);
     return response;
   },
   (error) => {
