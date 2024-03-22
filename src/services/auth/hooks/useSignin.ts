@@ -5,8 +5,11 @@ import { TSigninDto, TSigninResponse } from '../types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Toast from 'react-native-toast-message';
+import { useUserStore } from '@/hooks/store/useUserStore';
 
 export function useSignin() {
+  const { setToken } = useUserStore();
+
   return useMutation({
     mutationFn: (signinDto: TSigninDto) => signin(signinDto),
     onSuccess: async (data: TSigninResponse) => {
@@ -16,7 +19,9 @@ export function useSignin() {
         text2: 'We are redirecting you'
       });
 
-      await AsyncStorage.setItem('@token', data.accessToken);
+      await AsyncStorage.setItem('@token', data.accessToken)
+        .then(() => setToken(data.accessToken));
+
     },
     onError: (err) => {
       Toast.show({
