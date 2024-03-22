@@ -2,6 +2,6 @@ import { create } from 'zustand';
 import { TUserStore } from './types';
 
 export const userStore = create<TUserStore>((set) => ({
-  token: '',
+  token: undefined,
   setToken: (newToken: string) => set(() => ({ token: newToken }))
 }));

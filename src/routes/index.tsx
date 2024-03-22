@@ -3,6 +3,7 @@ import { useColors } from '@/hooks/useColors';
 
 import { AuthRoutes } from './AuthRoutes';
 import { useUserStore } from '@/hooks/store/useUserStore';
+import { AppRoutes } from './AppRoutes';
 
 export function Routes() {
   const { token } = useUserStore();
@@ -10,11 +11,9 @@ export function Routes() {
 
   DefaultTheme.colors.background = gray[700];
 
-  console.log('tok ', token);
-
   return (
     <NavigationContainer>
-      <AuthRoutes />
+      {token ? <AppRoutes /> : <AuthRoutes />}
     </NavigationContainer>
   );
 }

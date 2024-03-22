@@ -45,7 +45,7 @@ export function SigninScreen() {
       <View centered paddingHorizontal='xlg'>
         <Image
           alt='Minimal social media'
-          source={require('../../assets/images/logo.png')}
+          source={require('../../../assets/images/logo.png')}
           style={{
             width: 164,
             height: 66

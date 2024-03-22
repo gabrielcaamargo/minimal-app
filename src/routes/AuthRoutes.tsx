@@ -1,5 +1,5 @@
-import { SigninScreen } from '@/screens/SigninScreen';
-import { SignupScreen } from '@/screens/SignupScreen';
+import { SigninScreen } from '@/screens/auth/SigninScreen';
+import { SignupScreen } from '@/screens/auth/SignupScreen';
 import { NativeStackNavigationProp, createNativeStackNavigator } from '@react-navigation/native-stack';
 
 type TAuthRoutes = {

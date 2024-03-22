@@ -1,5 +1,5 @@
 type TUserStore = {
-  token: string
+  token: string | undefined
   setToken: (token: string) => void
 }
 
