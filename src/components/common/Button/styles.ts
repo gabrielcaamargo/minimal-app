@@ -13,6 +13,9 @@ const variants = {
   },
   disabled: {
     backgroundColor: theme.colors.gray[400]
+  },
+  success: {
+    backgroundColor: theme.colors.green[500]
   }
 };
 
