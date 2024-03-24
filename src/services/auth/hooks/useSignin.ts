@@ -8,7 +8,7 @@ import Toast from 'react-native-toast-message';
 import { useUserStore } from '@/hooks/store/useUserStore';
 
 export function useSignin() {
-  const { setToken } = useUserStore();
+  const { setToken, setIsFirstSignin } = useUserStore();
 
   return useMutation({
     mutationFn: (signinDto: TSigninDto) => signin(signinDto),
@@ -18,6 +18,12 @@ export function useSignin() {
         text1: 'Success',
         text2: 'We are redirecting you'
       });
+
+      if(data.firstSignin) {
+        setIsFirstSignin(true);
+      } else {
+        setIsFirstSignin(false);
+      }
 
       await AsyncStorage.setItem('@token', data.accessToken)
         .then(() => setToken(data.accessToken));

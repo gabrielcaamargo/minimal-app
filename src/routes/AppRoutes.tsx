@@ -11,6 +11,8 @@ import { ProfileScreen } from '@/screens/app/ProfileScreen';
 import { UploadScreen } from '@/screens/app/UploadScreen';
 
 import { AntDesign, Feather } from '@expo/vector-icons';
+import { CustomizeModalScreen } from '@/screens/app/CustomizeModalScreen';
+import { useUserStore } from '@/hooks/store/useUserStore';
 
 type TAppRoutes = {
   Home: undefined
@@ -18,6 +20,7 @@ type TAppRoutes = {
   Profile: undefined
   EditProfile: undefined
   Messaging: undefined
+  CustomizeModal: undefined
 }
 
 export type TAppNavigationProps = BottomTabNavigationProp<TAppRoutes>;
@@ -26,6 +29,8 @@ const Tab = createBottomTabNavigator<TAppRoutes>();
 
 export function AppRoutes() {
   const { gray } = useColors();
+  const { isFirstSignin } = useUserStore();
+
 
   return (
     <Tab.Navigator
@@ -43,6 +48,7 @@ export function AppRoutes() {
           paddingTop: 6
         }
       }}
+      initialRouteName={isFirstSignin ? 'CustomizeModal' : 'Home'}
     >
       <Tab.Screen
         name='Home'
@@ -87,6 +93,16 @@ export function AppRoutes() {
           tabBarButton: () => null
         }}
       />
+
+      <Tab.Screen
+        name='CustomizeModal'
+        component={CustomizeModalScreen}
+        options={{
+          tabBarButton: () => null,
+          tabBarStyle: { display: 'none' }
+        }}
+      />
+
     </Tab.Navigator>
   );
 }

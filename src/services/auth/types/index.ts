@@ -15,6 +15,7 @@ type TSigninResponse = {
   email: string
   id: string
   name: string
+  firstSignin: boolean
   profilePicture: null
   updatedAt: Date
   createdAt: Date
