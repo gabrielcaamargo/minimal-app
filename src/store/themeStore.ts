@@ -1,7 +1,10 @@
 import { create } from 'zustand';
-import { TThemeColors, TThemeStore } from './types/TThemeStore';
+import { TThemeStore } from './types/TThemeStore';
+import { orangeTheme, theme } from '@/theme';
+
+
 
 export const themeStore = create<TThemeStore>((set) => ({
-  theme: 'orange',
-  setTheme: (theme: TThemeColors) => set(() => ({ theme }))
+  theme: orangeTheme,
+  setTheme: (newTheme: typeof theme) => set(() => ({ theme: newTheme }))
 }));

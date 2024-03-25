@@ -1,5 +1,4 @@
 import styled from 'styled-components/native';
-import theme from '@/theme';
 import { TextColorType, TextVariantType } from './types';
 
 interface ITextProps {
@@ -7,14 +6,12 @@ interface ITextProps {
   color: TextColorType
 }
 
-const colorVariants = {
-  primary: theme.colors.white,
-  secondary: theme.colors.gray[400],
-  danger: theme.colors.red[500]
-};
-
 export const Text = styled.Text<ITextProps>`
-  color: ${({ color }) => colorVariants[color]};
+  color: ${({ theme, color }) => {
+    if(color === 'primary') return theme.colors.white;
+    if(color === 'secondary') return theme.colors.gray[400];
+    if(color === 'danger') return theme.colors.red[500];
+  }};
   font-family: ${({ theme, variant }) => theme.typography[variant].fontFamily};
   font-size: ${({ theme, variant }) => theme.typography[variant].fontSize}px;
 `;

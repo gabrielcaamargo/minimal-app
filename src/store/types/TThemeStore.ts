@@ -1,8 +1,8 @@
-type TThemeColors = 'purple' | 'orange' | 'pink' | 'blue'
+import { theme } from '@/theme';
 
 type TThemeStore = {
-  theme: TThemeColors
-  setTheme: (theme: TThemeColors) => void
+  theme: typeof theme
+  setTheme: (newTheme: typeof theme) => void
 }
 
-export { TThemeStore, TThemeColors };
+export { TThemeStore };
