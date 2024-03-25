@@ -1,27 +1,24 @@
 import styled from 'styled-components/native';
 import { ButtonVariantT } from './types';
 
-import theme from '@/theme';
-
 interface IContainerProps {
   variant: ButtonVariantT
 }
 
-const variants = {
-  default: {
-    backgroundColor: theme.colors.orange[500]
-  },
-  disabled: {
-    backgroundColor: theme.colors.gray[400]
-  },
-  success: {
-    backgroundColor: theme.colors.green[500]
-  }
-};
-
 export const Container = styled.TouchableOpacity<IContainerProps>`
   width: 100%;
-  background-color: ${({ variant }) => variants[variant].backgroundColor};
+  background-color: ${({ variant, theme }) => {
+    switch(variant) {
+    case 'success':
+      return theme.colors.green[500];
+
+    case 'disabled':
+      return theme.colors.gray[400];
+
+    default:
+      return theme.colors.primary[500];
+    }
+  }};
   padding: 16px;
   border-radius: 8px;
   align-items: center;

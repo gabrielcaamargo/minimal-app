@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { TUserStore } from './types';
+import { TUserStore } from './types/TUserStore';
 
 export const userStore = create<TUserStore>((set) => ({
   token: undefined,
