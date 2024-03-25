@@ -58,7 +58,6 @@ const purpleTheme: typeof theme = {
   }
 };
 
-
 const orangeTheme: typeof theme = {
   ...theme,
   colors: {
@@ -76,9 +75,9 @@ const blueTheme: typeof theme = {
   colors: {
     ...theme.colors,
     primary: {
-      300: '#5B6FD9',
-      400: '#3D52D5',
-      500: '#090C9B'
+      300: '#3370FF',
+      400: '#0040D6',
+      500: '#0037B8'
     }
   }
 };

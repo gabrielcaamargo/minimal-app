@@ -10,7 +10,7 @@ export const Container = styled.TouchableOpacity<IContainerProps>`
   background-color: ${({ variant, theme }) => {
     if(variant === 'success') return theme.colors.green[500];
     if(variant === 'disabled') return theme.colors.gray[400];
-    if(variant === 'default') return theme.colors.primary[500];
+    if(variant === 'default') return theme.colors.primary[400];
   }};
   padding: 16px;
   border-radius: 8px;

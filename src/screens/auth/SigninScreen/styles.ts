@@ -27,7 +27,7 @@ export const FormContainerFooterCallToAction = styled.View`
 
 export const RegisterText = styled.Text<IRegisterTextProps>`
   font-size: ${({ theme }) => theme.typography.smallText.fontSize}px;
-  color: ${({ theme, color = 'default' }) => color === 'default' ? theme.colors.gray[400] : theme.colors.primary[500]};
+  color: ${({ theme, color = 'default' }) => color === 'default' ? theme.colors.gray[400] : theme.colors.primary[400]};
   margin-top: 4px;
   justify-content: center;
 `;

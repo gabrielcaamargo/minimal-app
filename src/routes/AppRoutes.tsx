@@ -13,6 +13,7 @@ import { UploadScreen } from '@/screens/app/UploadScreen';
 import { AntDesign, Feather } from '@expo/vector-icons';
 import { CustomizeModalScreen } from '@/screens/app/CustomizeModalScreen';
 import { useUserStore } from '@/hooks/store/useUserStore';
+import { CustomizeColorScreen } from '@/screens/app/CustomizeColorScreen';
 
 type TAppRoutes = {
   Home: undefined
@@ -21,6 +22,7 @@ type TAppRoutes = {
   EditProfile: undefined
   Messaging: undefined
   CustomizeModal: undefined
+  CustomizeColor: undefined
 }
 
 export type TAppNavigationProps = BottomTabNavigationProp<TAppRoutes>;
@@ -97,6 +99,15 @@ export function AppRoutes() {
       <Tab.Screen
         name='CustomizeModal'
         component={CustomizeModalScreen}
+        options={{
+          tabBarButton: () => null,
+          tabBarStyle: { display: 'none' }
+        }}
+      />
+
+      <Tab.Screen
+        name='CustomizeColor'
+        component={CustomizeColorScreen}
         options={{
           tabBarButton: () => null,
           tabBarStyle: { display: 'none' }
