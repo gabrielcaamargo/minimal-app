@@ -14,6 +14,7 @@ import { AntDesign, Feather } from '@expo/vector-icons';
 import { CustomizeModalScreen } from '@/screens/app/CustomizeModalScreen';
 import { useUserStore } from '@/hooks/store/useUserStore';
 import { CustomizeColorScreen } from '@/screens/app/CustomizeColorScreen';
+import { CreateProfileScreen } from '@/screens/app/CreateProfileScreen';
 
 type TAppRoutes = {
   Home: undefined
@@ -23,6 +24,7 @@ type TAppRoutes = {
   Messaging: undefined
   CustomizeModal: undefined
   CustomizeColor: undefined
+  CreateProfile: undefined
 }
 
 export type TAppNavigationProps = BottomTabNavigationProp<TAppRoutes>;
@@ -108,6 +110,15 @@ export function AppRoutes() {
       <Tab.Screen
         name='CustomizeColor'
         component={CustomizeColorScreen}
+        options={{
+          tabBarButton: () => null,
+          tabBarStyle: { display: 'none' }
+        }}
+      />
+
+      <Tab.Screen
+        name='CreateProfile'
+        component={CreateProfileScreen}
         options={{
           tabBarButton: () => null,
           tabBarStyle: { display: 'none' }

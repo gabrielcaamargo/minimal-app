@@ -29,7 +29,7 @@ export function CustomizeColorScreen() {
   });
 
   function navigate() {
-    navigation.navigate('Home');
+    navigation.navigate('CreateProfile');
   }
 
   return (
