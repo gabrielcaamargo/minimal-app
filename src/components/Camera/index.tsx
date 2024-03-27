@@ -1,27 +1,28 @@
-import { useState, useRef, useEffect } from 'react';
+import { CameraType, Camera as ExpoCamera, FlashMode } from 'expo-camera';
+import { useEffect, useRef, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
-import { Camera as ExpoCamera, CameraType, FlashMode } from 'expo-camera';
 
-import { Feather } from '@expo/vector-icons';
+import { Feather, Ionicons } from '@expo/vector-icons';
 
-import * as Styled from './styles';
 import { useColors } from '@/hooks/useColors';
 import Toast from 'react-native-toast-message';
+import * as Styled from './styles';
 
 interface ICameraProps {
-  onClose: () => void
+  onClose: () => void;
 }
 
 interface ITookPhoto {
-  height: number
-  width: number
-  uri: string
+  height: number;
+  width: number;
+  uri: string;
 }
 
 export function Camera({ onClose }: ICameraProps) {
   const [, requestPermission] = ExpoCamera.useCameraPermissions();
   const cameraRef = useRef<ExpoCamera>(null);
   const [tookPhoto, setTookPhoto] = useState<ITookPhoto>();
+  const [type, setType] = useState<CameraType>(CameraType.front)
   const { gray, white } = useColors();
 
   useEffect(() => {
@@ -32,14 +33,17 @@ export function Camera({ onClose }: ICameraProps) {
         Toast.show({
           text1: 'Error',
           text2: 'Cannot open camera due to denied permissions',
-          type: 'error'
+          type: 'error',
         });
-
       }
     }
 
     getPermissions();
   }, []);
+
+  function handleToggleCameraType() {
+    setType(prev => prev === CameraType.front ? CameraType.back : CameraType.front)
+  }
 
   async function takePicture() {
     if (cameraRef.current) {
@@ -47,7 +51,6 @@ export function Camera({ onClose }: ICameraProps) {
       setTookPhoto(photo);
     }
   }
-
 
   return (
     <Styled.Container>
@@ -59,22 +62,28 @@ export function Camera({ onClose }: ICameraProps) {
 
       <Styled.CameraContainer>
         <Styled.PictureContainer>
-          {
-            tookPhoto
-              ? (
-                <Styled.Photo source={{ uri: tookPhoto.uri }} height={360}/>
-              )
-              : (
-                <ExpoCamera
-                  type={CameraType.front}
-                  style={{ flex: 1, backgroundColor: gray[600] }}
-                  flashMode={FlashMode.off}
-                  zoom={0}
-                  ratio='4:3'
-                  ref={cameraRef}
-                />
-              )
-          }
+          {tookPhoto ? (
+            <Styled.Photo
+              source={{ uri: tookPhoto.uri }}
+              height={360}
+              type={type}
+            />
+          ) : (
+            <>
+              <ExpoCamera
+                type={type}
+                style={{ flex: 1, backgroundColor: gray[600] }}
+                flashMode={FlashMode.off}
+                zoom={0}
+                ratio="4:3"
+                ref={cameraRef}
+              />
+
+              <Styled.InvertCamera onPress={handleToggleCameraType}>
+                <Ionicons name="camera-reverse-outline" size={32} color={white} />
+              </Styled.InvertCamera>
+            </>
+          )}
         </Styled.PictureContainer>
         <Styled.TakePhoto onPress={takePicture}>
           <Feather name="camera" size={24} color={white} />

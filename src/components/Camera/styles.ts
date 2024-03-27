@@ -1,4 +1,9 @@
+import { CameraType } from 'expo-camera';
 import styled from 'styled-components/native';
+
+interface IPhotoProps {
+  type: CameraType
+}
 
 export const Container = styled.View`
   flex: 1;
@@ -24,6 +29,13 @@ export const PictureContainer = styled.View`
   width: 100%;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.gray[400]};
+  position: relative;
+`;
+
+export const InvertCamera = styled.TouchableOpacity`
+  background-color: transparent;
+  position: absolute;
+  padding: 8px;
 `;
 
 export const TakePhoto = styled.TouchableOpacity`
@@ -34,7 +46,7 @@ export const TakePhoto = styled.TouchableOpacity`
   border: 1px solid ${({ theme }) => theme.colors.gray[400]};
 `;
 
-export const Photo = styled.Image`
-  transform: scaleX(-1);
+export const Photo = styled.Image<IPhotoProps>`
+  transform: ${({ type }) => type === CameraType.front && 'scaleX(-1)'};
   height: 100%;
 `;
